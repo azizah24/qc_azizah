@@ -28,12 +28,14 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  getMoreData() {
+  getMoreData() async{
     for (int i = maxIndex; i < maxIndex + 10; i++) {
+
       dataQc.add("System iOS ${i + 1}");
     }
 
     maxIndex = maxIndex + 10;
+    await new Future.delayed(const Duration(seconds: 2));
 
     setState(() {});
   }
@@ -336,11 +338,14 @@ class _HomePageState extends State<HomePage> {
                         // physics: NeverScrollableScrollPhysics(),
                         itemBuilder: (context, snap) {
                           if (snap == dataQc.length) {
-                            return JumpingDots(
-                              color: background1,
-                              radius: 10,
-                              numberOfDots: 3,
-                              animationDuration: Duration(milliseconds: 200),
+                            return Padding(
+                              padding: const EdgeInsets.only(top: 25, bottom: 20),
+                              child: JumpingDots(
+                                color: background1,
+                                radius: 10,
+                                numberOfDots: 3,
+                                animationDuration: Duration(milliseconds: 200),
+                              ),
                             );
                           }
                           return Container(
